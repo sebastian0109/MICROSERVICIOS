@@ -1,0 +1,12 @@
+C:\Users\sebab\Desktop\ms-cursos\src\main\java\cl\duoc\ms_cursos\controller\CursoController.java
+C:\Users\sebab\Desktop\ms-cursos\src\main\java\cl\duoc\ms_cursos\controller\ModuloController.java
+C:\Users\sebab\Desktop\ms-cursos\src\main\java\cl\duoc\ms_cursos\exception\ConflictoException.java
+C:\Users\sebab\Desktop\ms-cursos\src\main\java\cl\duoc\ms_cursos\exception\GlobalExceptionHandler.java
+C:\Users\sebab\Desktop\ms-cursos\src\main\java\cl\duoc\ms_cursos\exception\RecursoNoEncontradoException.java
+C:\Users\sebab\Desktop\ms-cursos\src\main\java\cl\duoc\ms_cursos\model\Curso.java
+C:\Users\sebab\Desktop\ms-cursos\src\main\java\cl\duoc\ms_cursos\model\Modulo.java
+C:\Users\sebab\Desktop\ms-cursos\src\main\java\cl\duoc\ms_cursos\MsCursosApplication.java
+C:\Users\sebab\Desktop\ms-cursos\src\main\java\cl\duoc\ms_cursos\repository\CursoRepository.java
+C:\Users\sebab\Desktop\ms-cursos\src\main\java\cl\duoc\ms_cursos\repository\ModuloRepository.java
+C:\Users\sebab\Desktop\ms-cursos\src\main\java\cl\duoc\ms_cursos\service\CursoService.java
+C:\Users\sebab\Desktop\ms-cursos\src\main\java\cl\duoc\ms_cursos\service\ModuloService.java

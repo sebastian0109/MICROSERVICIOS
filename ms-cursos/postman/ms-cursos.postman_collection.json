@@ -1,0 +1,148 @@
+{
+  "info": {
+    "name": "ms-cursos (AulaNube)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:8082" },
+    { "key": "cursoId", "value": "1" },
+    { "key": "moduloId", "value": "1" }
+  ],
+  "item": [
+    {
+      "name": "1. Crear curso (201)",
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": [
+        "pm.test('201 Created', () => pm.response.to.have.status(201));",
+        "pm.collectionVariables.set('cursoId', pm.response.json().id);"
+      ] } }],
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"titulo\": \"Java con Spring Boot\",\n  \"descripcion\": \"Microservicios desde cero\",\n  \"precio\": 49990,\n  \"instructorId\": 1\n}" },
+        "url": "{{baseUrl}}/api/cursos"
+      }
+    },
+    {
+      "name": "2. Crear curso con título repetido (409)",
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": [
+        "pm.test('409 Conflict', () => pm.response.to.have.status(409));"
+      ] } }],
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"titulo\": \"Java con Spring Boot\",\n  \"precio\": 49990\n}" },
+        "url": "{{baseUrl}}/api/cursos"
+      }
+    },
+    {
+      "name": "3. Crear curso inválido (400)",
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": [
+        "pm.test('400 Bad Request', () => pm.response.to.have.status(400));"
+      ] } }],
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"titulo\": \"\",\n  \"precio\": -5\n}" },
+        "url": "{{baseUrl}}/api/cursos"
+      }
+    },
+    {
+      "name": "4. Listar cursos (200)",
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": [
+        "pm.test('200 OK', () => pm.response.to.have.status(200));"
+      ] } }],
+      "request": { "method": "GET", "url": "{{baseUrl}}/api/cursos" }
+    },
+    {
+      "name": "5. Obtener curso por id (200)",
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": [
+        "pm.test('200 OK', () => pm.response.to.have.status(200));"
+      ] } }],
+      "request": { "method": "GET", "url": "{{baseUrl}}/api/cursos/{{cursoId}}" }
+    },
+    {
+      "name": "6. Obtener curso inexistente (404)",
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": [
+        "pm.test('404 Not Found', () => pm.response.to.have.status(404));"
+      ] } }],
+      "request": { "method": "GET", "url": "{{baseUrl}}/api/cursos/99999" }
+    },
+    {
+      "name": "7. Crear módulo (201)",
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": [
+        "pm.test('201 Created', () => pm.response.to.have.status(201));",
+        "pm.collectionVariables.set('moduloId', pm.response.json().id);"
+      ] } }],
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"titulo\": \"Introducción\",\n  \"orden\": 1,\n  \"curso\": { \"id\": {{cursoId}} }\n}" },
+        "url": "{{baseUrl}}/api/modulos"
+      }
+    },
+    {
+      "name": "8. Crear módulo con curso inexistente (404)",
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": [
+        "pm.test('404 Not Found', () => pm.response.to.have.status(404));"
+      ] } }],
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"titulo\": \"Huérfano\",\n  \"orden\": 1,\n  \"curso\": { \"id\": 99999 }\n}" },
+        "url": "{{baseUrl}}/api/modulos"
+      }
+    },
+    {
+      "name": "9. Módulos de un curso (200)",
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": [
+        "pm.test('200 OK', () => pm.response.to.have.status(200));"
+      ] } }],
+      "request": { "method": "GET", "url": "{{baseUrl}}/api/cursos/{{cursoId}}/modulos" }
+    },
+    {
+      "name": "10. Actualizar módulo (200)",
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": [
+        "pm.test('200 OK', () => pm.response.to.have.status(200));"
+      ] } }],
+      "request": {
+        "method": "PUT",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"titulo\": \"Introducción (actualizado)\",\n  \"orden\": 1,\n  \"curso\": { \"id\": {{cursoId}} }\n}" },
+        "url": "{{baseUrl}}/api/modulos/{{moduloId}}"
+      }
+    },
+    {
+      "name": "11. Actualizar curso (200)",
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": [
+        "pm.test('200 OK', () => pm.response.to.have.status(200));"
+      ] } }],
+      "request": {
+        "method": "PUT",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"titulo\": \"Java con Spring Boot\",\n  \"descripcion\": \"Versión actualizada\",\n  \"precio\": 39990,\n  \"instructorId\": 1\n}" },
+        "url": "{{baseUrl}}/api/cursos/{{cursoId}}"
+      }
+    },
+    {
+      "name": "12. Eliminar curso con módulos (409)",
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": [
+        "pm.test('409 Conflict', () => pm.response.to.have.status(409));"
+      ] } }],
+      "request": { "method": "DELETE", "url": "{{baseUrl}}/api/cursos/{{cursoId}}" }
+    },
+    {
+      "name": "13. Eliminar módulo (204)",
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": [
+        "pm.test('204 No Content', () => pm.response.to.have.status(204));"
+      ] } }],
+      "request": { "method": "DELETE", "url": "{{baseUrl}}/api/modulos/{{moduloId}}" }
+    },
+    {
+      "name": "14. Eliminar curso sin módulos (204)",
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": [
+        "pm.test('204 No Content', () => pm.response.to.have.status(204));"
+      ] } }],
+      "request": { "method": "DELETE", "url": "{{baseUrl}}/api/cursos/{{cursoId}}" }
+    }
+  ]
+}

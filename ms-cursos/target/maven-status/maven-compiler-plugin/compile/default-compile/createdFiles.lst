@@ -1,0 +1,12 @@
+cl\duoc\ms_cursos\repository\CursoRepository.class
+cl\duoc\ms_cursos\model\Curso.class
+cl\duoc\ms_cursos\service\CursoService.class
+cl\duoc\ms_cursos\exception\ConflictoException.class
+cl\duoc\ms_cursos\exception\RecursoNoEncontradoException.class
+cl\duoc\ms_cursos\controller\ModuloController.class
+cl\duoc\ms_cursos\repository\ModuloRepository.class
+cl\duoc\ms_cursos\model\Modulo.class
+cl\duoc\ms_cursos\controller\CursoController.class
+cl\duoc\ms_cursos\service\ModuloService.class
+cl\duoc\ms_cursos\exception\GlobalExceptionHandler.class
+cl\duoc\ms_cursos\MsCursosApplication.class
